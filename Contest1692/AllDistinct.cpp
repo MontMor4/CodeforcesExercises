@@ -1,3 +1,5 @@
+// https://codeforces.com/contest/1692/problem/B
+
 #include <bits/stdc++.h>
 using namespace std;
 //alias comp='g++ -std=c++17 -g -O2 -Wall -Wconversion -Wshadow -fsanitize=address,undefined -fno-sanitize-recover -ggdb -o out'

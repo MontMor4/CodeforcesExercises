@@ -1,4 +1,4 @@
-// https://codeforces.com/contest/1692/problem/A
+//https://codeforces.com/contest/1692/problem/C
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -8,7 +8,7 @@ using namespace std;
 #define int long long //Melhor linha de codigo ja escrita
 #define endl "\n" //Evita flush
 #define loop(i,a,n) for(int i=a; i < n; i++)
-#define input(x) for (auto &it : x) cin >> it  
+#define input(x) for (auto &it : x) cin >> it
 #define pb push_back
 #define all(x) x.begin(), x.end()
 #define ff first
@@ -29,19 +29,40 @@ const int MAX = 1e4+5;
 const ll LLINF = 0x3f3f3f3f3f3f3f3f; //escrevemos 3f 8 vezes
 const double PI = acos(-1);
 
-int32_t main(){ sws; 
 
-    int cases, a, b, c, d, output;
-    cin >> cases;
+int32_t main(){ sws;
 
-    loop(i, 0, cases){
-        output = 0;
-        cin >> a >> b >> c >> d;
-        if(b > a) output++;
-        if(c > a) output++;
-        if(d > a) output++;
+    int num, linha, coluna;
+    string s;
+    string auxiliar = "#.#";
+    char aux;
+    bool achou;
 
-        cout << output << endl;
+    cin >> num;
+
+    while(num > 0){
+        achou = false;
+
+        loop(i, 0, 8){
+            cin >> s;
+
+            if(s.find(auxiliar) != string::npos && !achou){
+                linha = i+2;
+                i++;
+
+                loop(j,0,8){
+                    cin >> aux;
+
+                    if(aux == '#'){
+                        coluna = j+1;
+                    }
+                }
+                achou = true;
+            }
+        }
+
+        cout << linha << " " << coluna << endl;
+        num--;
     }
 
     return 0;

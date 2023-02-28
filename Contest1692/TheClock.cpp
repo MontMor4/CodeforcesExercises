@@ -1,4 +1,4 @@
-// https://codeforces.com/contest/1692/problem/A
+// https://codeforces.com/contest/1692/problem/D
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -29,20 +29,50 @@ const int MAX = 1e4+5;
 const ll LLINF = 0x3f3f3f3f3f3f3f3f; //escrevemos 3f 8 vezes
 const double PI = acos(-1);
 
-int32_t main(){ sws; 
+bool isPalindrome(string clock){
+    if(clock[0] == clock[4] && clock[1] == clock [3]) return true;
+    else return false;
+}
 
-    int cases, a, b, c, d, output;
+string calcNewtime(string clock, int timeToCheck){
+    int minutes = timeToCheck + stoi(clock.substr(0, 2)) * 60 + stoi(clock.substr(3, 2));
+    minutes = minutes % 1440;
+    
+    int hour = minutes / 60;
+    minutes = minutes % 60;
+
+    string newTime = "";
+    
+    if(hour < 10) newTime += "0" + to_string(hour) + ":";
+    else newTime += to_string(hour) + ":";
+
+    if(minutes < 10) newTime += "0" + to_string(minutes);
+    else newTime += to_string(minutes);
+
+    return newTime;
+}
+
+void solve(){
+    string clock, initialClock;
+    int timeToCheck, answer = 0;
+    cin >> clock >> timeToCheck;
+    
+    initialClock = clock;
+    while (true)
+    {
+        if(isPalindrome(clock)) answer++;
+        clock = calcNewtime(clock, timeToCheck);
+        if(clock.compare(initialClock) == 0) break;
+    }
+    cout << answer << endl;
+}
+
+int32_t main(){ sws; 
+    int cases;
     cin >> cases;
 
     loop(i, 0, cases){
-        output = 0;
-        cin >> a >> b >> c >> d;
-        if(b > a) output++;
-        if(c > a) output++;
-        if(d > a) output++;
-
-        cout << output << endl;
+        solve();
     }
-
     return 0;
 }
